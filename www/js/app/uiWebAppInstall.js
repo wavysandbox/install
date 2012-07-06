@@ -20,13 +20,13 @@ define(function (require) {
                 // Hide error just incase it was showing.
                 errorDom.hide();
 
-                // Installed now so no need to show the install button.
-                dom.find('.webapp-install').hide();
-
                 //Remove any even listener for the install button.
                 dom.off('click', '.webapp-install', install.install);
                 enabledClick = false;
             } else if (install.state === 'uninstalled') {
+                // Installed now so no need to show the install button.
+                dom.find('.webapp-install').show();
+
                 if (!enabledClick) {
                     dom.on('click', '.webapp-install', install.install);
                     enabledClick = true;
