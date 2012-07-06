@@ -1,0 +1,185 @@
+@import url(bootstrap.css);
+@import url(bootstrap-responsive.css);
+
+body {
+    background-color: #eee;
+    padding: 0;
+}
+
+.navbar .navbar-inner {
+    border-radius: 0;
+}
+
+.navbar .brand {
+    padding: 8px 20px;
+}
+
+.navbar .brand .letter-block {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 0px 6px 4px 6px;
+    background-color: #000;
+    color: #fff;
+}
+
+.navbar .networkStatus {
+    color: #eee;
+    padding: 2px 4px;
+    font-size: 60%;
+    font-weight: bold;
+    -webkit-border-radius: 2px;
+       -moz-border-radius: 2px;
+            border-radius: 2px;
+}
+
+.navbar .navbar-inner {
+    background-color: #000;
+    background-image: -moz-linear-gradient(center top , #3c3c3c, #000);
+    border-radius: none;
+}
+
+.story-item,
+.story-view {
+    box-shadow: 0 1px 2px rgba(44, 30, 30, 0.4);
+    background-color: #fff;
+}
+.story-item {
+    margin-bottom: 30px;
+    margin: 10px;
+    width: 270px;
+    cursor: pointer;
+}
+.story-item .story,
+.story-view .story {
+    margin: 10px;
+}
+
+.story-view .story {
+    padding: 10px 0;
+}
+
+.story-item .image,
+.story .image {
+    position: relative;
+}
+.story .image img {
+    width: 100%;
+}
+.story-item .caption,
+.story-view .caption {
+    color: #444;
+    font-size: 90%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(255,255,255,0.65);
+}
+
+.caption .slug {
+    left: 0;
+    margin-left: 5px;
+}
+.caption .date {
+    right: 0;
+    position: absolute;
+    margin-right: 5px;
+}
+
+.story-item .title {
+    margin: 5px auto;
+    text-shadow: 1px 1px 1px #DDDDDD;
+}
+
+.story-view .image {
+    margin: 10px auto;
+}
+
+.story-item .teaser {
+    color: #666;
+    font-size: 95%;
+}
+
+.story-item .meta {
+    color: #444;
+    font-size: 90%;
+}
+
+.story-item .audio {
+    padding: 5px;
+    background-color: #ddd;
+}
+
+.story-item .audio .duration {
+    color: #666;
+}
+
+
+/* Subnav */
+.subnav {
+  width: 100%;
+  height: 36px;
+  background-color: #ddd; /* Old browsers */
+  background-repeat: repeat-x; /* Repeat the gradient */
+  background-image: -moz-linear-gradient(top, #e5e5e5 0%, #ddd 100%); /* FF3.6+ */
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#ddd)); /* Chrome,Safari4+ */
+  background-image: -webkit-linear-gradient(top, #e5e5e5 0%,#ddd 100%); /* Chrome 10+,Safari 5.1+ */
+  background-image: -ms-linear-gradient(top, #e5e5e5 0%,#ddd 100%); /* IE10+ */
+  background-image: -o-linear-gradient(top, #e5e5e5 0%,#ddd 100%); /* Opera 11.10+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#ddd',GradientType=0 ); /* IE6-9 */
+  background-image: linear-gradient(top, #e5e5e5 0%,#ddd 100%); /* W3C */
+  border: 1px solid #e5e5e5;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+}
+.subnav .nav {
+  margin-bottom: 0;
+}
+
+.subnav .webapp-install {
+    margin-right: 4px;
+    margin-top: 4px;
+}
+
+/* Fixed subnav on scroll */
+
+.subnav-fixed {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  right: 0;
+  z-index: 1020; /* 10 less than .navbar-fixed to prevent any overlap */
+  border-color: #d5d5d5;
+  border-width: 0 0 1px; /* drop the border on the fixed edges */
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
+          border-radius: 0;
+  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+     -moz-box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+          box-shadow: inset 0 1px 0 #fff, 0 1px 5px rgba(0,0,0,.1);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); /* IE6-9 */
+}
+.subnav-fixed .nav {
+  margin: 0 auto;
+  padding: 0 1px;
+}
+
+@media (max-width: 580px) {
+    .story-item {
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+/* LARGE DESKTOP SCREENS */
+@media (min-width: 1210px) {
+
+  /* Update subnav container */
+  .subnav-fixed .nav {
+    width: 1168px; /* 2px less to account for left/right borders being removed when in fixed mode */
+  }
+
+}
