@@ -49,8 +49,15 @@ p {
     margin-left: -34px;
 }
 
-.iphone {
+.ios {
     position: fixed;
+}
+
+.ios.iphone {
     bottom: 30px;
     left: 4px;
+}
+
+.ios.ipad {
+    top: 0;
 }

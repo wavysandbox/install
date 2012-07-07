@@ -51,9 +51,9 @@ define(function (require) {
         });
     });
 
-    install.on('showiOSInstall', function () {
+    install.on('showiOSInstall', function (deviceType) {
         //Show the UI that tells the user what Safari
         //button to hit
-        $('body').find('.iphone').show();
+        $('body').find('.ios').addClass(deviceType).show();
     });
 });

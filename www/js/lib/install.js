@@ -158,7 +158,7 @@ define(function (require) {
         //element mentioning how to install using the Safari
         //"Add to Home Screen" button.
         iosInstall: function () {
-            install.trigger('showiOSInstall');
+            install.trigger('showiOSInstall', navigator.platform.toLowerCase());
         }
     };
 
