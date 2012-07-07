@@ -23,11 +23,16 @@ p {
 
 .arrow_box {
     position: relative;
-    background: #B3BECD;
-    border: 3px solid #7086A3;
+    background-color: #B3BECD;
+    border-width: 3px;
+    border-style: solid;
+    border-color: #7086A3;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+            border-radius: 4px;
+    padding: 10px;
 }
 .arrow_box:after, .arrow_box:before {
-    top: 100%;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -36,17 +41,41 @@ p {
     pointer-events: none;
 }
 
-.arrow_box:after {
-    border-top-color: #B3BECD;
-    border-width: 30px;
-    left: 50%;
-    margin-left: -30px;
+.ipad.arrow_box {
+    border-color: #85868D;
+    background-color: #E9E9ED;
 }
-.arrow_box:before {
-    border-top-color: #7086A3;
-    border-width: 34px;
+.ipad.arrow_box:after, .ipad.arrow_box:before {
+    bottom: 100%;
+}
+.ipad.arrow_box:after {
+    border-bottom-color: #E9E9ED;
+    border-width: 20px;
+    left: 50px;
+    margin-left: -20px;
+    margin-bottom: -1px;
+}
+.ipad.arrow_box:before {
+    border-bottom-color: #85868D;
+    border-width: 24px;
+    left: 50px;
+    margin-left: -24px;
+}
+
+.iphone.arrow_box:after, .iphone.arrow_box:before {
+    top: 100%;
+}
+.iphone.arrow_box:after {
+    border-top-color: #B3BECD;
+    border-width: 20px;
     left: 50%;
-    margin-left: -34px;
+    margin-left: -20px;
+}
+.iphone.arrow_box:before {
+    border-top-color: #7086A3;
+    border-width: 24px;
+    left: 50%;
+    margin-left: -24px;
 }
 
 .ios {
@@ -59,5 +88,12 @@ p {
 }
 
 .ios.ipad {
-    top: 0;
+    top: 20px; /* arrow height */
+    left: 108px;
+}
+/* iPad 1 portrait mode */
+@media (min-width: 770px) and (max-width: 1024px) {
+    .ios.ipad {
+        left: 68px;
+    }
 }
