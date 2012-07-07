@@ -50,4 +50,10 @@ define(function (require) {
                 .show();
         });
     });
+
+    install.on('showiOSInstall', function () {
+        //Show the UI that tells the user what Safari
+        //button to hit
+        $('body').find('.iphone').show();
+    });
 });
