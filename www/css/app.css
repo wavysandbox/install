@@ -20,3 +20,31 @@ p {
     min-width: 180px;
     height: 120px;
 }
+
+.arrow_box {
+    position: relative;
+    background: #B3BECD;
+    border: 3px solid #7086A3;
+}
+.arrow_box:after, .arrow_box:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.arrow_box:after {
+    border-top-color: #B3BECD;
+    border-width: 30px;
+    left: 50%;
+    margin-left: -30px;
+}
+.arrow_box:before {
+    border-top-color: #7086A3;
+    border-width: 34px;
+    left: 50%;
+    margin-left: -34px;
+}
