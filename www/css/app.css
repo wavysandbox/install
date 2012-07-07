@@ -10,14 +10,6 @@ body {
     border-radius: 0;
 }
 
-.navbar-inner .brand {
-    width: 100%;
-    margin: 0 auto;
-    text-align: center;
-    padding-left: 0;
-    padding-right: 0;
-}
-
 p {
     font-size: 150%;
     line-height: 200%;
@@ -25,6 +17,6 @@ p {
 
 .webapp-install {
     font-size: 300%;
-    min-width: 240px;
+    min-width: 180px;
     height: 120px;
 }
