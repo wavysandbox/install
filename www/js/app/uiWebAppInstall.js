@@ -23,7 +23,17 @@ define(function (require) {
                 //Remove any even listener for the install button.
                 dom.off('click', '.webapp-install', install);
                 enabledClick = false;
+
+                // only when the app is actually installed do we show the 'installed' message
+                if (install.state === 'installed') {
+                    // only if it was installable and is now installed would we need to hide it
+                    dom.find('.webapp-install').hide();
+                    dom.find('.webapp-installed').show();
+                }
             } else if (install.state === 'uninstalled') {
+                // Hide the installed status just in case it was showing
+                dom.find('.webapp-installed').hide();
+
                 // Installed now so no need to show the install button.
                 dom.find('.webapp-install').show();
 
