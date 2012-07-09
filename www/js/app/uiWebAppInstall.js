@@ -14,6 +14,8 @@ define(function (require) {
         //Make sure DOM is ready before modifying it.
         $(function () {
             var dom = $('body'),
+                installDom = dom.find('.webapp-install'),
+                installedDom = dom.find('.webapp-installed'),
                 errorDom = dom.find('.webapp-error');
 
             if (install.state === 'installed' || install.state === 'unsupported') {
@@ -27,18 +29,24 @@ define(function (require) {
                 // only when the app is actually installed do we show the 'installed' message
                 if (install.state === 'installed') {
                     // only if it was installable and is now installed would we need to hide it
-                    dom.find('.webapp-install').hide();
-                    dom.find('.webapp-installed').show();
+                    installDom.hide();
+                    installedDom.show();
                 }
             } else if (install.state === 'uninstalled') {
                 // Hide the installed status just in case it was showing
-                dom.find('.webapp-installed').hide();
+                installedDom.hide();
 
                 // Installed now so no need to show the install button.
-                dom.find('.webapp-install').show();
+                installDom.show();
 
                 if (!enabledClick) {
                     dom.on('click', '.webapp-install', install);
+
+                    dom.find('.ios').on('click', function () {
+                        //Close out the ios panel when clicked.
+                        $(this).fadeOut();
+                    });
+
                     enabledClick = true;
                 }
             }
