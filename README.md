@@ -20,9 +20,11 @@ or use [volo](https://github.com/volojs/volo) to add it to your project:
 
 In a module where you want to find out about installation status:
 
+```javascript
 define(['install'], functon (install) {
     //Use install() and its related functions in here
 });
+```
 
 A complete working example of using the install API is in the
 [uiWebAppInstall.js](https://github.com/wavysandbox/install/blob/master/www/js/app/uiWebAppInstall.js) file.
@@ -39,13 +41,10 @@ navigator.mozApps object that allows installing web apps into Firefox or
 Firefox OS-based mobile operating systems.
 
 It is assumed that the webapp manifest is at the following location:
-location.href + 'manifest.webapp'.
+location.href + 'manifest.webapp'. If it is somewhere else, then set
+`install.mozillaInstallUrl` to the correct value.
 
-If it is somewhere else, then set `install.mozillaInstallUrl` to
-the correct value.
-
-The web app install uses
-a manifest file that is documented here:
+The web app install uses a manifest file that is documented here:
 https://developer.mozilla.org/en/Apps/Manifest
 
 **NOTE**: the icon paths in the manifest are absolute URLs,
