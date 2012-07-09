@@ -104,7 +104,14 @@ body {
 
 .ios.iphone {
     bottom: 30px;
-    left: 4px;
+    left: 48px;
+}
+
+/*iphone in landscape mode */
+@media only screen and (min-width : 321px) {
+    .ios.iphone {
+        left: 80px;
+    }
 }
 
 .ios.ipad {
