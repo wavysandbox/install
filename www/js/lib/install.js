@@ -18,50 +18,9 @@ define(function (require) {
     /**
      * Detects if the current app has been installed.
      *
-     * Platform-specific Notes:
+     * See https://github.com/wavysandbox/install/blob/master/README.md
+     * for details on how to use.
      *
-     * Firefox:
-     * ========
-     * It is assumed that the webapp manifest is at the following location:
-     * location.href + 'manifest.webapp'.
-     *
-     * If it is somewhere else, then set install.mozillaInstallUrl to
-     * the correct value.
-     *
-     * The web app install uses
-     * a manifest file that is documented here:
-     * https://developer.mozilla.org/en/Apps/Manifest
-     * NOTE: the icon paths in the manifest are absolute URLs,
-     * and only one app is allowed to be installed per unique domain.
-     * So when testing, be sure to serve the index.html from the
-     * root of a test domain. It is best to map the domain in your
-     * /etc/hosts file to 127.0.0.1 when testing locally.
-     * Also, currently the URL to install() needs to be a complete
-     * URL with protocol and domain.
-     *
-     * Chrome:
-     * ========
-     * 1) You must have a link tag in the document similar to the following,
-     * where itemID corresponds to the ID of your app in the chrome store.
-     *
-     * <link rel="chrome-webstore-item"
-     * href="https://chrome.google.com/webstore/detail/itemID">
-     *
-     * More details:
-     * https://developers.google.com/chrome/web-store/docs/inline_installation
-     *
-     * iOS:
-     * =======
-     * Details on the meta tags that are needed for iOS web apps:
-     * http://developer.apple.com/library/ios/#DOCUMENTATION/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
-     *
-     * This script just checks that
-     * window.navigator.standalone is true or not to determine if the app is
-     * installed.
-     *
-     * You should set the following meta tag at the very least,
-     * but likely you will need more tags for things like icons:
-     * <meta name="apple-mobile-web-app-capable" content="yes" />
      */
     function install() {
         var fn = install[install.type + 'Install'];
