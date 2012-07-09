@@ -1,1 +1,50 @@
-Setting up pages...
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/img/img-16.png" type="image/png">
+    <link rel="shortcut icon" href="/img/img-16.png" type="image/png">
+
+    <!-- This is necessary for the iOS Install -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-icon" href="/img/img-128.png">
+
+    <!-- This is necessary for the Chrome App Install -->
+    <!--<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/itemID">-->
+    <link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand">WavySandbox</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="webapp-error"></div>
+
+        <div id="content" class="hero-unit">
+            <h1>Install Demo</h1>
+            <p>This demo shows how you can install an app on Chrome, Firefox, Android, and iOS devices.</p>
+            <div class="row">
+                <div class="span12">
+                <button class="webapp-install span6 btn btn-primary hide">Install</button>
+                <h2 class="webapp-installed hide">Installed!</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="arrow_box ios hide">
+            <h3>Add to Home Screen</h3>
+            <p>Click the button on Safari to Install</p>
+        </div>
+    </div>
+    <!-- Load the main app module via the module loader -->
+    <script async data-main="js/app" src="js/app.js" charset="utf-8"></script>
+</body>
+</html>
