@@ -4,10 +4,16 @@
 define(function (require) {
     'use strict';
 
-    var Backbone = require('backbone'),
-        Events = Backbone.Events,
-        prop,
-        install;
+    var $ = require('jquery'),
+        dispatcher = $({}),
+        prop;
+
+    //Create event functions based on dispatcher object
+    function createDispatchFn(id) {
+        return function () {
+            return dispatcher[id].apply(dispatcher, arguments);
+        };
+    }
 
     /**
      * Detects if the current app has been installed.
@@ -57,117 +63,113 @@ define(function (require) {
      * but likely you will need more tags for things like icons:
      * <meta name="apple-mobile-web-app-capable" content="yes" />
      */
+    function install() {
+        var fn = install[install.type + 'Install'];
+        if (fn) {
+            fn();
+        } else {
+            install.trigger('error', 'unsupported install: ' + install.type);
+        }
+    }
 
     function triggerChange(state) {
         install.state = state;
         install.trigger('change', install.state);
     }
 
-    install = {
-        /**
-         *  The install state. Values are:
-         *  'unknown': the code has not tried to detect any state.
-         *
-         * @type {String}
-         */
-        state: 'unknown',
+    /**
+     *  The install state. Values are:
+     *  'unknown': the code has not tried to detect any state.
+     *
+     * @type {String}
+     */
+    install.state = 'unknown';
 
-        check: function () {
-            var apps = navigator.mozApps,
-                request;
+    install.check = function () {
+        var apps = navigator.mozApps,
+            request;
 
-            if (navigator.mozApps) {
-                //Mozilla web apps
-                install.type = 'mozilla';
-                request = navigator.mozApps.getSelf();
-                request.onsuccess = function () {
-                    if (this.result) {
-                        triggerChange('installed');
-                    } else {
-                        triggerChange('uninstalled');
-                    }
-                };
-
-                request.onerror = function (err) {
-                    // Just console log it, no need to bother the user.
-                    install.error = err;
-                    triggerChange('error');
-                };
-
-            } else if (typeof chrome !== 'undefined' &&
-                       chrome.webstore &&
-                       chrome.app) {
-                //Chrome web apps
-                install.type = 'chromeStore';
-                if (chrome.app.isInstalled) {
+        if (navigator.mozApps) {
+            //Mozilla web apps
+            install.type = 'mozilla';
+            request = navigator.mozApps.getSelf();
+            request.onsuccess = function () {
+                if (this.result) {
                     triggerChange('installed');
                 } else {
                     triggerChange('uninstalled');
                 }
-            } else if (typeof window.navigator.standalone !== 'undefined') {
-                install.type = 'ios';
-                if (window.navigator.standalone) {
-                    triggerChange('installed');
-                } else {
-                    triggerChange('uninstalled');
-                }
-            } else {
-                install.type = 'unsupported';
-                triggerChange('unsupported');
-            }
-        },
-
-        install: function () {
-            var fn = install[install.type + 'Install'];
-            if (fn) {
-                fn();
-            } else {
-                install.trigger('error', 'unsupported install: ' + install.type);
-            }
-        },
-
-        /* Mozilla/Firefox installation */
-        mozillaInstallUrl: location.href + 'manifest.webapp',
-        mozillaInstall: function () {
-            var installRequest = navigator.mozApps.install(install.mozillaInstallUrl);
-
-            installRequest.onsuccess = function (data) {
-                triggerChange('installed');
             };
 
-            installRequest.onerror = function (err) {
+            request.onerror = function (err) {
+                // Just console log it, no need to bother the user.
                 install.error = err;
                 triggerChange('error');
             };
-        },
 
-        /* Chrome installation */
-        chromeInstallUrl: null,
-        chromeInstall: function () {
-            chrome.webstore.install(install.chromeInstallUrl,
-                function () {
-                    triggerChange('installed');
-                }, function (err) {
-                    install.error = err;
-                    triggerChange('error');
-                });
-        },
-
-        /* iOS installation */
-        //Right now, just asks that something show a UI
-        //element mentioning how to install using the Safari
-        //"Add to Home Screen" button.
-        iosInstall: function () {
-            install.trigger('showiOSInstall', navigator.platform.toLowerCase());
+        } else if (typeof chrome !== 'undefined' &&
+                   chrome.webstore &&
+                   chrome.app) {
+            //Chrome web apps
+            install.type = 'chromeStore';
+            if (chrome.app.isInstalled) {
+                triggerChange('installed');
+            } else {
+                triggerChange('uninstalled');
+            }
+        } else if (typeof window.navigator.standalone !== 'undefined') {
+            install.type = 'ios';
+            if (window.navigator.standalone) {
+                triggerChange('installed');
+            } else {
+                triggerChange('uninstalled');
+            }
+        } else {
+            install.type = 'unsupported';
+            triggerChange('unsupported');
         }
     };
 
+    /* Mozilla/Firefox installation */
+    install.mozillaInstallUrl = location.href + 'manifest.webapp';
+    install.mozillaInstall = function () {
+        var installRequest = navigator.mozApps.install(install.mozillaInstallUrl);
+
+        installRequest.onsuccess = function (data) {
+            triggerChange('installed');
+        };
+
+        installRequest.onerror = function (err) {
+            install.error = err;
+            triggerChange('error');
+        };
+    };
+
+    /* Chrome installation */
+    install.chromeInstallUrl = null;
+    install.chromeInstall = function () {
+        chrome.webstore.install(install.chromeInstallUrl,
+            function () {
+                triggerChange('installed');
+            }, function (err) {
+                install.error = err;
+                triggerChange('error');
+            });
+    };
+
+    /* iOS installation */
+    //Right now, just asks that something show a UI
+    //element mentioning how to install using the Safari
+    //"Add to Home Screen" button.
+    install.iosInstall = function () {
+        install.trigger('showiOSInstall', navigator.platform.toLowerCase());
+    };
+
     //Allow install to do events.
-    for (prop in Events) {
-        if (Events.hasOwnProperty(prop)) {
-            install[prop] = Events[prop];
-        }
-    }
+    install.on = createDispatchFn('on');
+    install.off = createDispatchFn('off');
+    install.trigger = createDispatchFn('trigger');
+
 
     //Start up the checks
     install.check();

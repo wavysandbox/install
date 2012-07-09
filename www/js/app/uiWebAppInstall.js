@@ -21,14 +21,14 @@ define(function (require) {
                 errorDom.hide();
 
                 //Remove any even listener for the install button.
-                dom.off('click', '.webapp-install', install.install);
+                dom.off('click', '.webapp-install', install);
                 enabledClick = false;
             } else if (install.state === 'uninstalled') {
                 // Installed now so no need to show the install button.
                 dom.find('.webapp-install').show();
 
                 if (!enabledClick) {
-                    dom.on('click', '.webapp-install', install.install);
+                    dom.on('click', '.webapp-install', install);
                     enabledClick = true;
                 }
             }
@@ -40,7 +40,7 @@ define(function (require) {
     //Call it now, check the current state.
     onInstallStateChange();
 
-    install.on('error', function (err) {
+    install.on('error', function (evt, err) {
         //Make sure DOM is ready before modifying it.
         $(function () {
             var errorDom = $('body').find('.webapp-error');
@@ -51,7 +51,7 @@ define(function (require) {
         });
     });
 
-    install.on('showiOSInstall', function (deviceType) {
+    install.on('showiOSInstall', function (evt, deviceType) {
         //Show the UI that tells the user what Safari
         //button to hit
         $('body').find('.ios').addClass(deviceType).fadeIn();
