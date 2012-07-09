@@ -4915,7 +4915,7 @@ body {
     font-size: 300%;
     line-height: 250%;
 }
-#content p {
+#content p.description {
     font-size: 200%;
     line-height: 150%;
     margin: 0 20px;
@@ -4987,7 +4987,12 @@ body {
 }
 .ios.iphone {
     bottom: 30px;
-    left: 4px;
+    left: 48px;
+}
+@media only screen and (min-width : 321px) {
+    .ios.iphone {
+        left: 80px;
+    }
 }
 .ios.ipad {
     top: 20px; 
