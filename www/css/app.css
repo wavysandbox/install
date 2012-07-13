@@ -100,11 +100,18 @@ body {
 
 .ios {
     position: fixed;
+    left: 48px;
+    top: 100px;
+    bottom: 100px;
+    -webkit-transform: translateZ(0); // activate the GPU
 }
 
 .ios.iphone {
+    -webkit-transition: bottom 2s ease-out 1s;
+    transition: bottom 2s ease-out 1s;
     bottom: 30px;
     left: 48px;
+    top: auto;
 }
 
 /*iphone in landscape mode */
@@ -115,12 +122,10 @@ body {
 }
 
 .ios.ipad {
+    -webkit-transition: top 2s ease-out 1s;
+    transition: top 2s ease-out 1s;
+
     top: 20px; /* arrow height */
     left: 108px;
-}
-/* iPad 1 portrait mode */
-@media (min-width: 770px) and (max-width: 1024px) {
-    .ios.ipad {
-        left: 68px;
-    }
+    bottom: auto;
 }

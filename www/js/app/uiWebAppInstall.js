@@ -72,6 +72,6 @@ define(function (require) {
     install.on('showiOSInstall', function (evt, deviceType) {
         //Show the UI that tells the user what Safari
         //button to hit
-        $('body').find('.ios').addClass(deviceType).fadeIn();
+        $('body').find('.ios').show(0, function() { $(this).addClass(deviceType); });
     });
 });
