@@ -21,7 +21,7 @@ or use [volo](https://github.com/volojs/volo) to add it to your project:
 In a module where you want to find out about installation status:
 
 ```javascript
-define(['install'], functon (install) {
+define(['install'], function (install) {
     //Use install() and its related functions in here
 });
 ```
