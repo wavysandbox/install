@@ -4987,6 +4987,7 @@ body {
     left: 48px;
     top: 100px;
     bottom: 100px;
+    -webkit-transform: translateZ(0); // activate the GPU
 }
 .ios.iphone {
     -webkit-transition: bottom 2s ease-out 1s;
