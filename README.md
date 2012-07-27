@@ -5,6 +5,13 @@ web app platforms.
 
 Includes a demo app in `www` to show how it works.
 
+There is a live demo here:
+
+http://install.wavysandbox.com/
+
+However, it has not been set up for the Chrome App Store yet. It works in
+Firefox Aurora and on iOS though.
+
 ## Installation
 
 install.js is an AMD JS module, loadable by a module loader like RequireJS.
