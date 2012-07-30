@@ -9,7 +9,7 @@
   },
   "app": {
     "launch": {
-      "http://install.wavysandbox.com/"
+      "web_url": "http://install.wavysandbox.com/"
     }
   }
 }
