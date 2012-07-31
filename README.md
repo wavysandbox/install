@@ -131,4 +131,6 @@ support
 ["CRX-less" web apps](https://developers.google.com/chrome/apps/docs/no_crx)
 at some point, but they are not supported at this time.
 
-The crx file can be generated from the www contents by running `volo crxzip`.
+The .zip file that is needed for upload to the chrome store (which just includes
+the manifest.json and the icon file) can be generated from the www contents
+by running `volo crxzip`.
