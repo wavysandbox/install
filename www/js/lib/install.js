@@ -67,7 +67,6 @@ define(function (require) {
             };
 
         } else if (typeof chrome !== 'undefined' &&
-                   chrome.webstore &&
                    chrome.app) {
             //Chrome web apps
             install.type = 'chrome';
