@@ -134,3 +134,33 @@ at some point, but they are not supported at this time.
 The .zip file that is needed for upload to the chrome store (which just includes
 the manifest.json and the icon file) can be generated from the www contents
 by running `volo crxzip`.
+
+## Demo Screenshots
+
+## Firefox
+
+Right now the Web app capability is only in the [Aurora Channel](http://www.mozilla.org/en-US/firefox/aurora/) (pre-beta) for Firefox.
+
+1) First load
+
+![step one](https://github.com/wavysandbox/install/raw/master/READMEimg/ff01.png)
+
+https://github.com/wavysandbox/install/raw/master/READMEimg/chrome01.png
+
+2) After clicking Install
+
+![step two](https://github.com/wavysandbox/install/raw/master/READMEimg/ff02.png)
+
+3) After Installed
+
+![step three](https://github.com/wavysandbox/install/raw/master/READMEimg/ff03.png)
+
+
+4) An App icon shows up in the OS Applications folder (showing OS X in this screenshot):
+
+![step four](https://github.com/wavysandbox/install/raw/master/READMEimg/ff04.png)
+
+
+5) What the Window looks like after clicking on the OS app icon.
+
+![step five](https://github.com/wavysandbox/install/raw/master/READMEimg/ff05.png)
