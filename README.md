@@ -145,8 +145,6 @@ Right now the Web app capability is only in the [Aurora Channel](http://www.mozi
 
 ![step one](https://github.com/wavysandbox/install/raw/master/READMEimg/ff01.png)
 
-https://github.com/wavysandbox/install/raw/master/READMEimg/chrome01.png
-
 2) After clicking Install
 
 ![step two](https://github.com/wavysandbox/install/raw/master/READMEimg/ff02.png)
@@ -164,3 +162,38 @@ https://github.com/wavysandbox/install/raw/master/READMEimg/chrome01.png
 5) What the Window looks like after clicking on the OS app icon.
 
 ![step five](https://github.com/wavysandbox/install/raw/master/READMEimg/ff05.png)
+
+## Chrome
+
+1) First load
+
+![step one](https://github.com/wavysandbox/install/raw/master/READMEimg/chrome01.png)
+
+2) After clicking Install
+
+![step two](https://github.com/wavysandbox/install/raw/master/READMEimg/chrome02.png)
+
+3) After Installed, shown on New Tab screen
+
+![step three](https://github.com/wavysandbox/install/raw/master/READMEimg/chrome03.png)
+
+4) After clicking on app icon that was in the New Tab screen
+
+![step four](https://github.com/wavysandbox/install/raw/master/READMEimg/chrome04.png)
+
+## iOS
+
+Showing install flow on an iPhone:
+
+1) First load
+
+![step one](https://github.com/wavysandbox/install/raw/master/READMEimg/ios01.png)
+
+2) After clicking Install
+
+![step two](https://github.com/wavysandbox/install/raw/master/READMEimg/ios02.png)
+
+3) After launching frome Home Screen icon
+
+![step three](https://github.com/wavysandbox/install/raw/master/READMEimg/ios03.png)
+
