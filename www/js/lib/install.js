@@ -70,7 +70,7 @@ define(function (require) {
                    chrome.webstore &&
                    chrome.app) {
             //Chrome web apps
-            install.type = 'chromeStore';
+            install.type = 'chrome';
             if (chrome.app.isInstalled) {
                 triggerChange('installed');
             } else {

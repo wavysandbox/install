@@ -33,6 +33,10 @@ define(function (require) {
                     installedDom.show();
                 }
             } else if (install.state === 'uninstalled') {
+                // Configure the app to be installable in Chrome. ASSUMES a
+                // link tag that matches the selector below.
+                install.chromeInstallUrl = $('[rel="chrome-webstore-item"]')[0].href;
+
                 // Hide the installed status just in case it was showing
                 installedDom.hide();
 
@@ -72,6 +76,6 @@ define(function (require) {
     install.on('showiOSInstall', function (evt, deviceType) {
         //Show the UI that tells the user what Safari
         //button to hit
-        $('body').find('.ios').show(0, function() { $(this).addClass(deviceType); });
+        $('body').find('.ios').show(0, function () { $(this).addClass(deviceType); });
     });
 });

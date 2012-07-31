@@ -1,0 +1,13 @@
+{
+  "version": "0.2",
+  "name": "wavysandbox/install demo",
+  "description": "Hosted wavysandbox/install for demo purposes",
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "app": {
+    "launch": {
+      "web_url": "http://install.wavysandbox.com/"
+    }
+  }
+}

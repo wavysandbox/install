@@ -113,6 +113,23 @@ module.exports = {
     //Deploys the code to github pages.
     ghdeploy: require('volo-ghdeploy')(buildDir, pagesDir),
 
+    //Creates a a zip file of the manifest.json and the
+    //128 icon, used to upload to the chrome store.
+    crxzip: {
+        summary: 'Creates a zip file for crx (Chrome web app) upload.',
+        run: function (d, v, namedArgs) {
+            var fileName = 'chromeapp.zip';
+
+            v.rm(fileName);
+
+            v.shell('zip ' + fileName + ' www/manifest.json www/icon-128.png')
+                .then(function () {
+                    console.log(fileName + ' created');
+                })
+                .then(d.resolve, d.reject);
+        }
+    },
+
     //Runs less on the .less files in tools/less to generate the CSS files.
     less: function (d, v, namedArgs) {
         var q = v.require('q');

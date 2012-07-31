@@ -72,8 +72,7 @@ itemID corresponds to the ID of your app in the chrome store.
 
     <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/itemID">
 
-2) You can set `install.chromeInstallUrl` to the item URL to use for
-installation if you have multiple link tags of the form above.
+2) You must also set `install.chromeInstallUrl` to the item URL in the link tag.
 
 More details:
 
@@ -106,3 +105,30 @@ You should set the following meta tag at the very least,
 but likely you will need more tags for things like icons:
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
+
+## Demo notes
+
+The demo is in the `www` directory. This project uses
+[volo](https://github.com/volojs/volo) to generate a `www-build` directory
+that is used to deploy the built version of the site to
+[GitHub Pages](https://help.github.com/categories/20/articles), via the
+`volo ghdeploy` command specified in the
+[volofile](https://github.com/wavysandbox/install/blob/master/volofile).
+
+Some notes on the `www` layout:
+
+There is a `manifest.webapp` and a `manifest.json`. The .webapp version is for
+Firefox, the .json file is [mandated by Chrome](https://developers.google.com/chrome/web-store/docs/get_started_simple).
+
+Chrome also suggests that the
+[128 version of the icon be next to manifest.json](https://developers.google.com/chrome/web-store/docs/get_started_simple#step3).
+
+So that is why the 128 icon is in the root of `www` instead of in `www/img`.
+
+This demo follows the ["Hosted Apps" approach](https://developers.google.com/chrome/apps/docs/developers_guide) in the Chrome documents, which requires
+an upload to the Chrome store but just for the manifest and icon. Chrome may
+support
+["CRX-less" web apps](https://developers.google.com/chrome/apps/docs/no_crx)
+at some point, but they are not supported at this time.
+
+The crx file can be generated from the www contents by running `volo crxzip`.
