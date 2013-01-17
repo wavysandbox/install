@@ -153,8 +153,8 @@ define(function (require) {
     }
 
     function triggerEvent(evtType, detail) {
-        var event = document.createEvent('Event');
-        event.initEvent(evtType, false, false, { detail: detail});
+        var event = document.createEvent('CustomEvent');
+        event.initCustomEvent(evtType, false, false, detail);
         dispatchEvent(event);
     }
 
