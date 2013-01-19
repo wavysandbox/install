@@ -1,7 +1,15 @@
 /*jslint nomen: true */
 /*global define, navigator, location, window, chrome, document */
 
-define(function (require) {
+/* support both requireJS and plain JS */
+if (typeof define === 'undefined') {
+  window.define = function(func) {
+    'use strict';
+    window.install = func();
+  };
+}
+
+define(function () {
     'use strict';
 
     /**
