@@ -1,19 +1,8 @@
 /*jslint nomen: true */
-/*global define, navigator, location, window, chrome */
+/*global define, navigator, location, window, chrome, document */
 
 define(function (require) {
     'use strict';
-
-    var $ = require('jquery'),
-        dispatcher = $({}),
-        prop;
-
-    //Create event functions based on dispatcher object
-    function createDispatchFn(id) {
-        return function () {
-            return dispatcher[id].apply(dispatcher, arguments);
-        };
-    }
 
     /**
      * Detects if the current app has been installed.
@@ -27,13 +16,13 @@ define(function (require) {
         if (fn) {
             fn();
         } else {
-            install.trigger('error', 'unsupported install: ' + install.type);
+            triggerEvent('error', 'unsupported install: ' + install.type);
         }
     }
 
     function triggerChange(state) {
         install.state = state;
-        install.trigger('change', install.state);
+        triggerEvent('change', install.state);
     }
 
     /**
@@ -120,13 +109,59 @@ define(function (require) {
     //element mentioning how to install using the Safari
     //"Add to Home Screen" button.
     install.iosInstall = function () {
-        install.trigger('showiOSInstall', navigator.platform.toLowerCase());
+        triggerEvent('showiOSInstall', navigator.platform.toLowerCase());
     };
 
+    var listeners = {};
+
+    function addEventListener(type, func /*, don't use capture */) {
+        if (! func) {
+            throw new TypeError('The listener must not be null or undefined.');
+        }
+
+        var theseListeners = listeners[type] = listeners[type] || [];
+        if (theseListeners.indexOf(func) === -1) {
+            theseListeners.push(func);
+        }
+    }
+
+    function removeEventListener(type, func) {
+        var theseListeners = listeners[type];
+        if (theseListeners) {
+            var index = theseListeners.indexOf(func);
+            theseListeners.splice(index, 1);
+        }
+    }
+
+    function dispatchEvent(evt) {
+        var type = evt.type;
+        var theseListeners = listeners[type];
+
+        if (theseListeners) {
+            theseListeners.forEach(function(oneListener) {
+                window.setTimeout(dispatchOneEvent.bind(null, evt, oneListener));
+            });
+        }
+    }
+
+    function dispatchOneEvent(evt, oneListener) {
+        if (typeof oneListener === "function") {
+            oneListener(evt);
+        } else if (typeof oneListener.handleEvent === "function") {
+            oneListener.handleEvent(evt);
+        }
+    }
+
+    function triggerEvent(evtType, detail) {
+        var event = document.createEvent('CustomEvent');
+        event.initCustomEvent(evtType, false, false, detail);
+        dispatchEvent(event);
+    }
+
     //Allow install to do events.
-    install.on = createDispatchFn('on');
-    install.off = createDispatchFn('off');
-    install.trigger = createDispatchFn('trigger');
+    install.addEventListener = addEventListener;
+    install.removeEventListener = removeEventListener;
+    install.dispatchEvent = dispatchEvent;
 
 
     //Start up the checks

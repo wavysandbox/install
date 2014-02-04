@@ -14,6 +14,7 @@ define(function (require) {
         //Make sure DOM is ready before modifying it.
         $(function () {
             var dom = $('body'),
+                $install = $(install),
                 installDom = dom.find('.webapp-install'),
                 installedDom = dom.find('.webapp-installed'),
                 errorDom = dom.find('.webapp-error');
@@ -57,12 +58,12 @@ define(function (require) {
         });
     }
 
-    install.on('change', onInstallStateChange);
+    $install.on('change', onInstallStateChange);
 
     //Call it now, check the current state.
     onInstallStateChange();
 
-    install.on('error', function (evt, err) {
+    $install.on('error', function (evt, err) {
         //Make sure DOM is ready before modifying it.
         $(function () {
             var errorDom = $('body').find('.webapp-error');
@@ -73,7 +74,7 @@ define(function (require) {
         });
     });
 
-    install.on('showiOSInstall', function (evt, deviceType) {
+    $install.on('showiOSInstall', function (evt, deviceType) {
         //Show the UI that tells the user what Safari
         //button to hit
         $('body').find('.ios').show(0, function () { $(this).addClass(deviceType); });
